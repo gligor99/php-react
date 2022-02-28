@@ -24,29 +24,30 @@ const Posts = () => {
       {data.map((item) => {
         const id = item.id;
         return (
-          <div
-            key={item.id}
-            style={{ border: "2px solid black", margin: "15px" }}
-          >
-            <h3>{item.title}</h3>
-            <p>{item.body}</p>
-            <Link to={`post/${item.id}/read`}>Read Post</Link>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                color: "red",
-              }}
-            >
-              <p style={{ marginRight: "15px" }}>
-                Category: {item.category_name}
-              </p>
-              <p>{item.author}</p>
+          <div className="container p-3" key={item.id}>
+            <div className="row">
+              <div className="col-6 offset-3">
+                <div className="card">
+                  <div className="card-header d-flex justify-content-between">
+                    <span>{item.title}</span>
+                    <span className="text-muted">Author: {item.author}</span>
+                  </div>
+                  <div className="card-body">
+                    <p className="card-text">{item.body}</p>
+                    <Link
+                      className="btn btn-warning"
+                      to={`post/${item.id}/read`}
+                    >
+                      Read Post
+                    </Link>
+                  </div>
+                  <div className="card-footer text-muted d-flex justify-content-between">
+                    <span>Category: {item.category_name}</span>
+                    <Link to={`post/${item.id}/edit`}>Edit</Link>
+                  </div>
+                </div>
+              </div>
             </div>
-            <Link style={{ marginRight: "15px" }} to={`post/${item.id}/edit`}>
-              Edit
-            </Link>
-            <button>Delete</button>
           </div>
         );
       })}

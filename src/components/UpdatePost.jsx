@@ -20,75 +20,67 @@ const UpdatePost = () => {
       .then((res) => {
         console.log(res.data);
         navigate("/");
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        flexDirection: "column",
-        alignItems: "center",
-      }}
-    >
-      <h1>Update Post</h1>
-      <form onSubmit={handleSubmit}>
-        <table cellSpacing="10">
-          <tbody>
-            <tr>
-              <th>
-                <label>Title: </label>
-              </th>
-              <td>
-                <input type="text" name="title" onChange={handleChange} />
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <label>Body: </label>
-              </th>
-              <td>
-                <input type="text" name="body" onChange={handleChange} />
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <label>Author: </label>
-              </th>
-              <td>
-                <input type="text" name="author" onChange={handleChange} />
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <label>Category: </label>
-              </th>
-              <td>
-                <input
-                  type="number"
-                  name="category_id"
-                  onChange={handleChange}
-                />
-              </td>
-            </tr>
-            <tr>
-              <th>
-                <label>ID: </label>
-              </th>
-              <td>
-                <input type="number" name="id" onChange={handleChange} />
-              </td>
-            </tr>
-            <tr>
-              <td colSpan="2" align="right">
-                <button>Save</button>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </form>
-    </div>
+    <>
+      <div className="p-5 bg-secondary text-center h2 text-white">
+        <span>Update Post: {id}</span>
+      </div>
+      <div className="container">
+        <div className="row">
+          <div className="col-6 offset-3">
+            <form onSubmit={handleSubmit}>
+              <input
+                className="form-control my-2"
+                type="text"
+                placeholder="Title"
+                name="title"
+                onChange={handleChange}
+                aria-label="default input example"
+              />
+              <input
+                className="form-control my-2"
+                type="text"
+                placeholder="Article"
+                name="body"
+                onChange={handleChange}
+                aria-label="default input example"
+              />
+              <input
+                className="form-control my-2"
+                type="text"
+                placeholder="Author"
+                name="author"
+                onChange={handleChange}
+                aria-label="default input example"
+              />
+               <input
+                className="form-control"
+                type="number"
+                placeholder="Category"
+                name="category_id"
+                onChange={handleChange}
+                aria-label="default input example"
+              />
+              <input
+                className="form-control my-2"
+                type="number"
+                placeholder="ID"
+                name="id"
+                onChange={handleChange}
+                aria-label="default input example"
+              />
+              <button className="btn btn-primary form-control">Update post</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 

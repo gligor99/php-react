@@ -21,14 +21,24 @@ const ReadSingle = () => {
   }, []);
 
   return (
-    <div style={{ border: "2px solid black", margin: "15px" }}>
-      <h1>{data.title}</h1>
-      <article>
-        <b>{data.body}</b>
-      </article>
-      <p>Category: {data.category_name}</p>
-      <p>Author: {data.author}</p>
-    </div>
+    <>
+      <div className="p-5 bg-secondary text-center h2 text-white">
+        {data.title}
+      </div>
+      <div className="container">
+        <div className="row">
+          <div className="col-6 offset-3 d-flex justify-content-between text-muted border-bottom">
+            <span>Category: {data.category_name}</span>
+            <span>Author: {data.author}</span>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-6 offset-3 py-4">
+            <article className="border p-3">{data.body}</article>
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
