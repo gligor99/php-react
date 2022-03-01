@@ -3,14 +3,14 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const UpdatePost = () => {
-  const navigate = useNavigate();
   const [inputs, setInputs] = useState([]);
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    setInputs((values) => ({ ...values, [name]: value }));
+    setInputs((values) => ({ ...values, [name]: value}));
   };
 
   const handleSubmit = (e) => {
@@ -59,7 +59,7 @@ const UpdatePost = () => {
                 onChange={handleChange}
                 aria-label="default input example"
               />
-               <input
+              <input
                 className="form-control"
                 type="number"
                 placeholder="Category"
@@ -72,10 +72,13 @@ const UpdatePost = () => {
                 type="number"
                 placeholder="ID"
                 name="id"
+                // defaultValue={id}
                 onChange={handleChange}
                 aria-label="default input example"
               />
-              <button className="btn btn-primary form-control">Update post</button>
+              <button className="btn btn-primary form-control">
+                Update post
+              </button>
             </form>
           </div>
         </div>

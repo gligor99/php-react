@@ -88,7 +88,7 @@ const CreatePost = () => {
             )}
             {status?.type === "error" && (
               <div class="alert alert-danger" role="alert">
-                Error. Something went wrong. Post not created
+                Error. Something went wrong. Post is not created!
               </div>
             )}
           </div>

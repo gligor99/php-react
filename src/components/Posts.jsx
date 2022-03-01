@@ -15,6 +15,19 @@ const Posts = () => {
         console.log(error);
       });
 
+  // const deleteRow = (id) => {
+  //   axios
+  //     .delete("http://localhost/php_rest_myblog/api/post/delete.php")
+  //     .then((res) => {
+  //       console.log(res);
+  //       console.log(res.data);
+
+  //       const posts = data.filter((item) => item.id !== id);
+  //       setData(posts);
+  //     });
+  // };
+
+
   useEffect(() => {
     fetchData();
   }, []);
@@ -35,11 +48,12 @@ const Posts = () => {
                   <div className="card-body">
                     <p className="card-text">{item.body}</p>
                     <Link
-                      className="btn btn-warning"
+                      className="btn btn-warning me-3"
                       to={`post/${item.id}/read`}
                     >
                       Read Post
                     </Link>
+                    <button className="btn btn-danger">Delete</button>
                   </div>
                   <div className="card-footer text-muted d-flex justify-content-between">
                     <span>Category: {item.category_name}</span>
