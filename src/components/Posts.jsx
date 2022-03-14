@@ -4,6 +4,9 @@ import { Link } from "react-router-dom";
 
 const Posts = () => {
   const [data, setData] = useState([]);
+  const [id, setId] = useState("");
+
+  console.log(id);
 
   const fetchData = () =>
     axios
@@ -16,18 +19,25 @@ const Posts = () => {
       });
 
   const deleteData = () =>
-    axios.delete("http://localhost/php_rest_myblog/api/post/delete.php", {
-      data: { id: 1 },
-    });
+    axios
+      .delete("http://localhost/php_rest_myblog/api/post/delete.php", {
+        data: { id: id },
+      })
+      .then((res) => {
+        console.log(res.data);
+      });
 
   useEffect(() => {
     fetchData();
   }, [data]);
 
+  useEffect(() => {
+    deleteData();
+  }, [id]);
+
   return (
     <div>
-      {data.map((item) => {
-        const id = item.id;
+      {data?.map((item) => {
         return (
           <div className="container p-3" key={item.id}>
             <div className="row">
@@ -50,7 +60,7 @@ const Posts = () => {
                     <button
                       type="submit"
                       className="btn btn-danger"
-                      onClick={deleteData}
+                      onClick={() => setId(item.id)}
                     >
                       Delete
                     </button>
