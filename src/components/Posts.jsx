@@ -15,22 +15,14 @@ const Posts = () => {
         console.log(error);
       });
 
-  // const deleteRow = (id) => {
-  //   axios
-  //     .delete("http://localhost/php_rest_myblog/api/post/delete.php")
-  //     .then((res) => {
-  //       console.log(res);
-  //       console.log(res.data);
-
-  //       const posts = data.filter((item) => item.id !== id);
-  //       setData(posts);
-  //     });
-  // };
-
+  const deleteData = () =>
+    axios.delete("http://localhost/php_rest_myblog/api/post/delete.php", {
+      data: { id: 1 },
+    });
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [data]);
 
   return (
     <div>
@@ -42,7 +34,9 @@ const Posts = () => {
               <div className="col-6 offset-3">
                 <div className="card">
                   <div className="card-header d-flex justify-content-between">
-                    <span>{item.title}</span>
+                    <span>
+                      {item.title} - ID:{item.id}
+                    </span>
                     <span className="text-muted">Author: {item.author}</span>
                   </div>
                   <div className="card-body">
@@ -53,7 +47,13 @@ const Posts = () => {
                     >
                       Read Post
                     </Link>
-                    <button className="btn btn-danger">Delete</button>
+                    <button
+                      type="submit"
+                      className="btn btn-danger"
+                      onClick={deleteData}
+                    >
+                      Delete
+                    </button>
                   </div>
                   <div className="card-footer text-muted d-flex justify-content-between">
                     <span>Category: {item.category_name}</span>
