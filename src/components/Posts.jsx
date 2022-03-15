@@ -6,11 +6,12 @@ const Posts = () => {
   const [data, setData] = useState([]);
   const [id, setId] = useState("");
 
+  console.log(data);
+
   const fetchData = () =>
     axios
       .get("http://localhost/php_rest_myblog/api/post/read.php")
       .then((res) => {
-        console.log(res);
         const postsData = res.data;
         setData(postsData);
       })
@@ -25,10 +26,10 @@ const Posts = () => {
 
   useEffect(() => {
     fetchData();
-  }, [data]);
-
-  useEffect(() => {
     deleteData();
+    return () => {
+      window.location.reload();
+    };
   }, [id]);
 
   if (data.message === "No Posts Found") {
@@ -38,7 +39,7 @@ const Posts = () => {
           <div className="col-6 offset-3">
             <div className="card">
               <div className="card-header d-flex justify-content-between">
-                <span>Nije pronadjen ni jedan post.</span>
+                <span>Lista je prazna.</span>
               </div>
             </div>
           </div>
