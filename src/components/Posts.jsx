@@ -6,26 +6,22 @@ const Posts = () => {
   const [data, setData] = useState([]);
   const [id, setId] = useState("");
 
-  console.log(id);
-
   const fetchData = () =>
     axios
       .get("http://localhost/php_rest_myblog/api/post/read.php")
       .then((res) => {
-        setData(res.data);
+        console.log(res);
+        const postsData = res.data;
+        setData(postsData);
       })
       .catch((error) => {
         console.log(error);
       });
 
   const deleteData = () =>
-    axios
-      .delete("http://localhost/php_rest_myblog/api/post/delete.php", {
-        data: { id: id },
-      })
-      .then((res) => {
-        console.log(res.data);
-      });
+    axios.delete("http://localhost/php_rest_myblog/api/post/delete.php", {
+      data: { id: id },
+    });
 
   useEffect(() => {
     fetchData();
@@ -34,6 +30,22 @@ const Posts = () => {
   useEffect(() => {
     deleteData();
   }, [id]);
+
+  if (data.message === "No Posts Found") {
+    return (
+      <div className="container p-3">
+        <div className="row">
+          <div className="col-6 offset-3">
+            <div className="card">
+              <div className="card-header d-flex justify-content-between">
+                <span>Nije pronadjen ni jedan post.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div>
