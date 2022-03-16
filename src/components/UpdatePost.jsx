@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const UpdatePost = () => {
@@ -10,7 +10,7 @@ const UpdatePost = () => {
   const handleChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    setInputs((values) => ({ ...values, [name]: value}));
+    setInputs((values) => ({ ...values, [name]: value, id }));
   };
 
   const handleSubmit = (e) => {
@@ -60,7 +60,7 @@ const UpdatePost = () => {
                 aria-label="default input example"
               />
               <input
-                className="form-control"
+                className="form-control my-2"
                 type="number"
                 placeholder="Category"
                 name="category_id"
@@ -69,11 +69,11 @@ const UpdatePost = () => {
               />
               <input
                 className="form-control my-2"
+                hidden
                 type="number"
                 placeholder="ID"
                 name="id"
-                // defaultValue={id}
-                onChange={handleChange}
+                defaultValue={id}
                 aria-label="default input example"
               />
               <button className="btn btn-primary form-control">

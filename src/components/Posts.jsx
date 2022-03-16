@@ -27,9 +27,11 @@ const Posts = () => {
   useEffect(() => {
     fetchData();
     deleteData();
+
     return () => {
-      window.location.reload();
+      window.location.reload()
     };
+    
   }, [id]);
 
   if (data.message === "No Posts Found") {
@@ -57,13 +59,14 @@ const Posts = () => {
               <div className="col-6 offset-3">
                 <div className="card">
                   <div className="card-header d-flex justify-content-between">
-                    <span>
-                      {item.title} - ID:{item.id}
-                    </span>
+                    <span>{item.title}</span>
                     <span className="text-muted">Author: {item.author}</span>
                   </div>
                   <div className="card-body">
-                    <p className="card-text">{item.body}</p>
+                    <p className="card-text">{`${item.body.substring(
+                      0,
+                      150
+                    )}...`}</p>
                     <Link
                       className="btn btn-warning me-3"
                       to={`post/${item.id}/read`}

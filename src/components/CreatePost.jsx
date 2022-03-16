@@ -82,12 +82,12 @@ const CreatePost = () => {
               </button>
             </form>
             {status?.type === "success" && (
-              <div class="alert alert-warning" role="alert">
+              <div className="alert alert-warning" role="alert">
                 Post Created
               </div>
             )}
             {status?.type === "error" && (
-              <div class="alert alert-danger" role="alert">
+              <div className="alert alert-danger" role="alert">
                 Error. Something went wrong. Post is not created!
               </div>
             )}
